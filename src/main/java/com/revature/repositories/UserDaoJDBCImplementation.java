@@ -1,4 +1,4 @@
-package com.revature.respiratory;
+package com.revature.repositories;
 
 public class UserDaoJDBCImplementation {
 

@@ -2,8 +2,8 @@ package com.revature.model;
 
 public class Employee {
 
-	public Employee() {
-		// TODO Auto-generated constructor stub
-	}
+	private long id;
+	private String firstname;
+	private String lastname;
 
 }
