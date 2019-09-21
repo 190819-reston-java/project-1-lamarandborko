@@ -2,6 +2,7 @@ package com.revature.controller;
 import java.util.Scanner;
 import com.revature.model.Employee;
 import com.revature.services.EmployeeService;
+import com.revature.services.ManagerService;
 
 public class Controller {
 	
@@ -86,7 +87,52 @@ public class Controller {
 	}
 
 	private static void managerMenu() {
+		Scanner in = new Scanner(System.in);
 		System.out.println("Manager Menu");
+		System.out.println(" ");
+		System.out.println("1: approve/deny pending reimbursement requests");
+		System.out.println("2: view pending requests from all employees");
+		System.out.println("3: view all resolved requests");
+		System.out.println("4: view all employees");
+		System.out.println("5: view employee reimbursement requests");
+		System.out.println("6: view employee information");
+		System.out.println("7: Exit to main menu");
+		System.out.println("8: Exit");
+		String userChoice = in.next();
+switch (userChoice) {
+        
+        case "1":
+        	ManagerService.reviewReimbursements();
+            break;			
+        case "2":
+        	ManagerService.viewAllPendingReimbursements();
+            break;
+        case "3":
+        	ManagerService.viewResolvedReimbursements();
+            break;
+        case "4":
+        	ManagerService.viewAllEmployees();
+            break;
+        case "5":
+        	ManagerService.viewEmployeeRequests();
+            break;
+        case "6":
+        	ManagerService.viewEmployee();
+            break;
+        case "7":
+        	loginMenu();
+        case "8":
+        	System.out.println("exiting");
+        	in.close();
+        	System.exit(0);
+        	break;
+        default:
+        	Controller.quit = true;
+            System.err.println("Option not recognized");
+            break;
+        
+	}
+	managerMenu();
 		
 	}
 
