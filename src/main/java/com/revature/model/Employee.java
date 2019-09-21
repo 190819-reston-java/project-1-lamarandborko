@@ -2,8 +2,11 @@ package com.revature.model;
 
 public class Employee {
 
-	public Employee() {
-		// TODO Auto-generated constructor stub
+
+	public static void employeeInformation() {
+
+		System.out.println("Employee Information");
+		
 	}
 
 }
