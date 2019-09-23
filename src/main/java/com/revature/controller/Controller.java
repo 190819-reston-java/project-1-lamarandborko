@@ -108,6 +108,7 @@ public class Controller {
 	}
 
 	private static void managerMenu() {
+
 		Scanner in = new Scanner(System.in);
 		System.out.println(" ");
 		System.out.println("Manager Menu");
@@ -121,6 +122,7 @@ public class Controller {
 		System.out.println("7: Exit to main menu");
 		System.out.println("8: Exit");
 		String userChoice = in.next();
+
 		switch (userChoice) {
 
 		case "1":
