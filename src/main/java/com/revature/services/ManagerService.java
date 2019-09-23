@@ -1,4 +1,3 @@
-
 package com.revature.services;
 
 public class ManagerService {
@@ -34,4 +33,3 @@ public class ManagerService {
 	
 
 }
-
