@@ -5,12 +5,13 @@ import com.revature.model.Employee;
 
 
 public interface EmployeeDao {
+	Employee getEmployee(String username);
 	
 	Employee viewEmployee(int id);
 	
 	Employee viewEmployee(String name);
 	
-	Employee getUser(String username, String password);
+	Employee getEmployee(String username, String password);
 	
 	List<Employee> viewEmployees();
 	

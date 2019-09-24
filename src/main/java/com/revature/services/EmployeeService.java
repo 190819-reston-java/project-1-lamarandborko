@@ -1,9 +1,6 @@
 package com.revature.services;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.Scanner;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 public class EmployeeService {

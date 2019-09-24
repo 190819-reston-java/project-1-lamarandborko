@@ -1,20 +1,21 @@
 package com.revature.controller;
 
 import java.util.Scanner;
+
 import com.revature.model.Employee;
+import com.revature.repositories.EmployeeDao;
+import com.revature.repositories.EmployeeDaoJDBC;
 import com.revature.services.EmployeeService;
 import com.revature.services.ManagerService;
 
 public class Controller {
-
+	public static Employee currentEmployee;
 	public static boolean isSignedIn;
 	public static boolean quit = false;
-	private static Scanner in = new Scanner(System.in);
 
 	public static void loginMenu() {
 
 		Scanner in = new Scanner(System.in);
-		System.out.println(" ");
 		System.out.println("Welcome to the Main Menu");
 		System.out.println(" ");
 		System.out.println("1. Login Employee");
@@ -26,7 +27,7 @@ public class Controller {
 
 		case "1":
 			
-			employeeMenu();
+			logIn();
 			break;
 		case "2":
 			managerMenu();
@@ -49,19 +50,26 @@ public class Controller {
 	}
 	
 	public static void logIn() {
-		System.out.println(" ");
-		System.out.println("Please enter your Username and Password");
-		System.out.println("Username:");
-		String username = in.next();
-		System.out.println("Password:");
-		String password = in.next();
-		if(username==username && password==password) {
-			System.out.println("Login Successful.");
-			isSignedIn = true;
-		} else {
-			System.out.println("Login Unsuccessful. Please Try again.");
-			loginMenu();
-		}
+		String emp_username;
+		String emp_password;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Your Username: ");;
+		emp_username = sc.next();
+		System.out.println("Enter Your Password: ");
+		emp_password = sc.next();
+		EmployeeDao employeeDao = new EmployeeDaoJDBC();
+		if (employeeDao.getEmployee(emp_username, emp_password) != null) {
+			currentEmployee = employeeDao.getEmployee(emp_username);
+	    	System.out.println(currentEmployee.first_name +" welcome to reimbursement App!");
+	        employeeMenu();	    	  							    	  						
+	      } else {
+	    	 System.err.println("Wrong username or password, try again!");
+	    	 System.out.println(" ");
+	    	 logIn();// if mismatch calling same method over and over			
+		  }	   			
+			sc.close();	  
+		  
+		
 	}
 
 	private static void employeeMenu() {
@@ -88,7 +96,7 @@ public class Controller {
 			EmployeeService.viewResolvedReimbursement();
 			break;
 		case "4":
-			Employee.employeeInformation();
+			//Employee.employeeInformation();
 			break;
 		case "5":
 			loginMenu();
