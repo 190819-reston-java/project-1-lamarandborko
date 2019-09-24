@@ -28,6 +28,7 @@ public class EmployeeService {
 		System.out.println("Enter amount to reimburst: ");
 		amount = sc.nextInt();
 		System.out.println("Enter image for approval: ");
+		
 		System.out.println("Thank you for subminting. ");						
 		
 	}

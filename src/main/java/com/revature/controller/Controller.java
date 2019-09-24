@@ -25,6 +25,7 @@ public class Controller {
 		switch (userChoice) {
 
 		case "1":
+			
 			employeeMenu();
 			break;
 		case "2":
