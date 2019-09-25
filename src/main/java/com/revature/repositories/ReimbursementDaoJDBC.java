@@ -1,8 +1,13 @@
 package com.revature.repositories;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.model.Reimbursement;
+import com.revature.utils.ConnectionUtil;
+import com.revature.utils.StreamCloser;
 
 public class ReimbursementDaoJDBC implements ReimbursementDao {
 
@@ -56,8 +61,29 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 
 	@Override
 	public boolean createReimbursement(Reimbursement r) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		String query = "INSERT INTO reimbursements VALUES (DEFAULT, ?, ?, ?);";
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, r.employee_id);
+			stmt.setString(2, r.title);
+			stmt.setDouble(3, r.amountrequested);		
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+		
+		return true;
 	}
+
+
 
 }

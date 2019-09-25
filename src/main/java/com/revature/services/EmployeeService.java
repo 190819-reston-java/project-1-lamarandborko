@@ -1,21 +1,25 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import com.revature.controller.Controller;
+import com.revature.model.Reimbursement;
+import com.revature.repositories.ReimbursementDao;
+import com.revature.repositories.ReimbursementDaoJDBC;
 public class EmployeeService {
 	
 	static Scanner sc = new Scanner(System.in);
+	static int id;
 	static String typeOfReimbursement;
-	static int amount;
-	static ImageIcon image;
-	static JLabel label;
+	static double amount;
+	static int employee_id;
 	static String username;
 	static String  password;
 	static String first_name;
 	static String last_name;
 	static String email;
 	static String type;
+	public static ArrayList<Reimbursement> reimbursement = new ArrayList<Reimbursement>();
 
 	public static void submitReimbursement() {
 		System.out.println("Submit Reimbursement Here");
@@ -23,8 +27,19 @@ public class EmployeeService {
 		System.out.println("What is Reimbursement for? ");
 		typeOfReimbursement = sc.next();
 		System.out.println("Enter amount to reimburst: ");
-		amount = sc.nextInt();
-		System.out.println("Enter image for approval: ");
+		amount = sc.nextDouble();
+		//System.out.println("Enter image for approval: ");
+		
+			ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
+			employee_id = Controller.currentEmployee.id;
+			typeOfReimbursement = "Reimbursement is for: " + typeOfReimbursement;
+			System.out.println(employee_id);
+			System.out.println(typeOfReimbursement);
+			
+			
+			reimbursementDao.createReimbursement(new Reimbursement(id, employee_id, typeOfReimbursement, amount));
+			reimbursement.add(new Reimbursement(id, employee_id, typeOfReimbursement, amount));
+			
 		
 		System.out.println("Thank you for subminting. ");						
 		
