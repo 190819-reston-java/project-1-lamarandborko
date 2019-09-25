@@ -10,6 +10,8 @@ import com.revature.services.ManagerService;
 
 public class Controller {
 	public static Employee currentEmployee;
+	public static Employee employeeType;
+	public static String emp_type;
 	public static boolean isSignedIn;
 	public static boolean quit = false;
 
@@ -30,7 +32,7 @@ public class Controller {
 			logIn();
 			break;
 		case "2":
-			managerMenu();
+			logIn();
 			break;
 		case "3":
 			createUser();
@@ -61,7 +63,12 @@ public class Controller {
 		if (employeeDao.getEmployee(emp_username, emp_password) != null) {
 			currentEmployee = employeeDao.getEmployee(emp_username);
 	    	System.out.println(currentEmployee.first_name +" welcome to reimbursement App!");
-	        employeeMenu();	    	  							    	  						
+	    	if("Manager".equals(currentEmployee.emp_type)) {
+	    		managerMenu();	
+	    	}else {
+	    		employeeMenu();
+	    	}
+	            	  							    	  						
 	      } else {
 	    	 System.err.println("Wrong username or password, try again!");
 	    	 System.out.println(" ");
