@@ -10,6 +10,7 @@ public class Controller {
 	public static boolean isSignedIn;
 	public static boolean quit = false;
 	private static Scanner in = new Scanner(System.in);
+	private static EmployeeService employeeService = new EmployeeService();
 
 	public static void loginMenu() {
 
@@ -78,13 +79,13 @@ public class Controller {
 		switch (userChoice) {
 
 		case "1":
-			EmployeeService.submitReimbursement();
+			employeeService.submitReimbursement();
 			break;
 		case "2":
-			EmployeeService.viewPendingReimbursement();
+			employeeService.viewPendingReimbursements(0);
 			break;
 		case "3":
-			EmployeeService.viewResolvedReimbursement();
+			employeeService.viewResolvedReimbursements(0);
 			break;
 		case "4":
 			Employee.employeeInformation();
@@ -160,7 +161,7 @@ public class Controller {
 
 	private static void createUser() {
 		System.out.println("Create New Account");
-		EmployeeService.addEmployee();
+		employeeService.addEmployee();
 
 	}
 
