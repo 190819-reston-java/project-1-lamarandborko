@@ -106,8 +106,30 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 
 	@Override
 	public boolean createEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		String query = "INSERT INTO employees VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, e.getFirst_name());
+			stmt.setString(2, e.getLast_name());
+			stmt.setString(3, e.getEmail());
+			stmt.setString(4, e.getEmp_username());
+			stmt.setString(5, e.getEmp_password());
+			stmt.setString(6, e.getEmp_type());
+			stmt.execute();
+		} catch (SQLException sql) {
+			sql.printStackTrace();
+			return false;
+		} finally {
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+		
+		return true;
 	}
 
 

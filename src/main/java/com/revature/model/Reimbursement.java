@@ -2,7 +2,6 @@ package com.revature.model;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Date;
 
 public class Reimbursement {
 	
@@ -10,21 +9,20 @@ public class Reimbursement {
 	public int employee_id;
 	public String title;
 	public double amountrequested;
-	public Date daterequested;
+	public String daterequested;
 	public String status;
 	public String picture;
-	public Date date_requested;
+	public String resolved_status;
 	static NumberFormat formatter = new DecimalFormat("#0.00");
 
-	public Reimbursement(int id, int employeeid, String title, double amount_requested) {
+	public Reimbursement(int id, int employeeid, String title, double amount_requested, String status) {
 		super();
 		this.id = id;
 		this.employee_id = employeeid;
 		this.title = title;
 		this.amountrequested = amount_requested;
-		this.daterequested = date_requested;
 		this.status = status;
-		this.picture = picture;
+
 	}
 
 	public int getId() {
@@ -35,12 +33,12 @@ public class Reimbursement {
 		this.id = id;
 	}
 
-	public int getEmployeeid() {
+	public int getEmployee_id() {
 		return employee_id;
 	}
 
-	public void setEmployeeid(int employeeid) {
-		this.employee_id = employeeid;
+	public void setEmployee_id(int employee_id) {
+		this.employee_id = employee_id;
 	}
 
 	public String getTitle() {
@@ -51,20 +49,12 @@ public class Reimbursement {
 		this.title = title;
 	}
 
-	public double getAmount_requested() {
+	public double getAmountrequested() {
 		return amountrequested;
 	}
 
-	public void setAmount_requested(double amount_requested) {
-		this.amountrequested = amount_requested;
-	}
-
-	public Date getDate_requested() {
-		return daterequested;
-	}
-
-	public void setDate_requested(Date date_requested) {
-		this.daterequested = date_requested;
+	public void setAmountrequested(double amountrequested) {
+		this.amountrequested = amountrequested;
 	}
 
 	public String getStatus() {
@@ -83,11 +73,26 @@ public class Reimbursement {
 		this.picture = picture;
 	}
 
+	public String getResolved_status() {
+		return resolved_status;
+	}
+
+	public void setResolved_status(String resolved_status) {
+		this.resolved_status = resolved_status;
+	}
+
+	public String getDaterequested() {
+		return daterequested;
+	}
+
 	@Override
 	public String toString() {
 		return "Reimbursement [id=" + id + ", employee_id=" + employee_id + ", title=" + title + ", amountrequested="
-				+ amountrequested + ", daterequested=" + daterequested + ", status=" + status + ", picture="
-				+ picture + "]";
+				+ amountrequested + ", daterequested=" + daterequested + ", status=" + status + ", picture=" + picture
+				+ ", resolved_status=" + resolved_status + "]";
 	}
+
+
+
 
 }

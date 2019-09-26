@@ -23,5 +23,7 @@ public interface ReimbursementDao {
 	List<Reimbursement> viewAllResolved();
 	
 	boolean createReimbursement(Reimbursement r);
+
+	Reimbursement getReimbursement(int employee_id);
 	
 }
