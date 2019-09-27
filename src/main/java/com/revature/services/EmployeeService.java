@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.revature.controller.Controller;
@@ -16,8 +17,8 @@ public class EmployeeService {
 	static String typeOfReimbursement;
 	static double amount;
 	static int employee_id;
-	static String username;
-	static String  password;
+	static String emp_username;
+	static String  emp_password;
 	static String first_name;
 	static String last_name;
 	static String email;
@@ -53,8 +54,11 @@ public class EmployeeService {
 		System.out.println("Pending Reimbursements");
 		ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
 		for(Reimbursement r : reimbursementDao.viewEmployeePending()) {
-			if("Pending".equals(r.status) ) 
-			System.out.println( r.title + "  " + r.amountrequested + " " + r.status  + "  " + r.getDaterequested() );
+			if("Pending".equals(r.status) ) {
+				//String s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(r.daterequested);
+				System.out.println( r.title + "  " + r.amountrequested + " " + r.status  + "  " + r.daterequested );
+			}
+			
 			
 		}
 		
@@ -64,7 +68,7 @@ public class EmployeeService {
 		System.out.println("Resolved Reimbursement");
 		ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
 		for(Reimbursement r : reimbursementDao.viewEmployeePending()) {
-			if("Approved".equals(r.status) ) 
+			if("Approved".equals(r.resolved_status) ) 
 			System.out.println( r.title + "  " + r.amountrequested + " " + r.status  + "  " + r.getDaterequested() );
 				
 		}
@@ -82,13 +86,13 @@ public class EmployeeService {
 		System.out.print("Enter Email: ");
 		email = sc.next();
 		System.out.print("Enter Username: ");
-		username = sc.next();
+		emp_username = sc.next();
 		System.out.print("Enter Password: ");
-		password = sc.next();
+		emp_password = sc.next();
 		System.out.println("Employee has been registered succesfully!");					
 		EmployeeDao employeeDao = new EmployeeDaoJDBC();
-		employeeDao.createEmployee(new Employee(id, first_name, last_name, email, username, password, emp_type));
-		employee.add(new Employee(id, first_name, last_name, email, username, password, emp_type));
+		employeeDao.createEmployee(new Employee(id, first_name, last_name, email, emp_username, emp_password, emp_type));
+		employee.add(new Employee(id, first_name, last_name, email, emp_username, emp_password, emp_type));
 	}
 
 	
