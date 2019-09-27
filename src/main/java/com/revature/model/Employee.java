@@ -102,6 +102,5 @@ public class Employee {
 
 		System.out.println("Employee Information");
 
-	}
 
 }
