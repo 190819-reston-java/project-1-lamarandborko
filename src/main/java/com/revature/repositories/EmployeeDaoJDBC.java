@@ -9,6 +9,7 @@ import com.revature.model.Employee;
 import com.revature.utils.ConnectionUtil;
 import com.revature.utils.StreamCloser;
 
+
 public class EmployeeDaoJDBC implements EmployeeDao {
 	@Override
 	public Employee getEmployee(String emp_username) {
@@ -133,4 +134,5 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 	}
 
 
+}
 }

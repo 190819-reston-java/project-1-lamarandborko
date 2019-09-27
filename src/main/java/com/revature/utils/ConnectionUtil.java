@@ -5,7 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
 public class ConnectionUtil {
+
 	
 	private static Connection conn = null;
 	
@@ -27,13 +34,11 @@ public class ConnectionUtil {
 			//How to actually make connections with jdbc
 			conn = DriverManager.getConnection(url, username, password);
 			//System.out.println("===CONNECTED===");
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return conn;
 	}
 	

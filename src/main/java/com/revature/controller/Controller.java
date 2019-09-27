@@ -12,8 +12,12 @@ public class Controller {
 	public static Employee currentEmployee;
 	public static Employee employeeType;
 	public static String emp_type;
-	public static boolean isSignedIn;
 	public static boolean quit = false;
+  
+	private static Scanner in = new Scanner(System.in);
+	private static EmployeeService employeeService = new EmployeeService();
+	private static ManagerService managerService = new ManagerService();
+
 
 	public static void loginMenu() {
 
@@ -94,13 +98,13 @@ public class Controller {
 		switch (userChoice) {
 
 		case "1":
-			EmployeeService.submitReimbursement();
+			employeeService.submitReimbursement();
 			break;
 		case "2":
-			EmployeeService.viewPendingReimbursement();
+			employeeService.viewPendingReimbursements(0);
 			break;
 		case "3":
-			EmployeeService.viewResolvedReimbursement();
+			employeeService.viewResolvedReimbursements(0);
 			break;
 		case "4":
 			//Employee.employeeInformation();
@@ -142,22 +146,22 @@ public class Controller {
 		switch (userChoice) {
 
 		case "1":
-			ManagerService.reviewReimbursements();
+			managerService.reviewReimbursements();
 			break;
 		case "2":
-			ManagerService.viewAllPendingReimbursements();
+			managerService.viewAllPendingReimbursements();
 			break;
 		case "3":
-			ManagerService.viewResolvedReimbursements();
+			managerService.viewAllResolvedReimbursements();
 			break;
 		case "4":
-			ManagerService.viewAllEmployees();
+			managerService.viewAllEmployees();
 			break;
 		case "5":
-			ManagerService.viewEmployeeRequests();
+			managerService.viewEmployeeRequests();
 			break;
 		case "6":
-			ManagerService.viewEmployee();
+			managerService.viewEmployee();
 			break;
 		case "7":
 			loginMenu();
@@ -178,7 +182,7 @@ public class Controller {
 
 	private static void createUser() {
 		System.out.println("Create New Account");
-		EmployeeService.addEmployee();
+		employeeService.addEmployee();
 
 	}
 

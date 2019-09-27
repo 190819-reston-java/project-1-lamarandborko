@@ -33,8 +33,24 @@ public class Employee {
 		return first_name;
 	}
 
+
 	public void setFirst_name(String first_name) {
 		this.first_name = first_name;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String firstname) {
+		this.first_name = firstname;
 	}
 
 	public String getLast_name() {
@@ -48,6 +64,7 @@ public class Employee {
 	public String getEmail() {
 		return email;
 	}
+
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -77,10 +94,14 @@ public class Employee {
 		this.emp_type = emp_type;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", email=" + email
 				+ ", emp_username=" + emp_username + ", emp_password=" + emp_password + ", emp_type=" + emp_type + "]";
+
+		System.out.println("Employee Information");
+
 	}
 
 }
