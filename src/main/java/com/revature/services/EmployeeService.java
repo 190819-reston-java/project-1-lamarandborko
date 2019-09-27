@@ -38,9 +38,10 @@ public class EmployeeService {
 	}
 
 	public void setSelectedEmployee(Employee selectedEmployee) {
-		this.selectedEmployee = selectedEmployee
+		this.selectedEmployee = selectedEmployee;
+	}
   
-	public static void submitReimbursement() {
+	public void submitReimbursement() {
 		System.out.println("Submit Reimbursement Here");
 		System.out.println(" ");
 		System.out.println("What is Reimbursement for? ");
@@ -48,7 +49,7 @@ public class EmployeeService {
 		System.out.println("Enter amount to reimburst: ");
 		amount = sc.nextInt();
 		System.out.println("Enter image for approval: ");
-		System.out.println("Thank you for subminting. ");						
+		System.out.println("Thank you for submitting. ");						
 
 	}
 
@@ -56,7 +57,7 @@ public class EmployeeService {
 		return employeeDao.viewEmployees();
 	}
 	
-	public void submitReimbursement() {
+	public void submitReimbursement2() {
 		reimbursementDao.createReimbursement(new Reimbursement(0, 0, null, 0, null, null, null));
 		System.out.println("Submited Reimbursement Request");
 	}

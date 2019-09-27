@@ -3,23 +3,23 @@ package com.revature.model;
 public class Employee {
 
 	private int id;
-	private String firstname;
-	private String lastname;
+	private String first_name;
+	private String last_name;
 	private String email;
-	private String username;
-	private String userpassword;
-	private String type;
+	private String emp_username;
+	private String emp_password;
+	private String emp_type;
 
-	public Employee(int id, String firstname, String lastname, String email, String username, String userpassword,
-			String type) {
+	public Employee(int id, String first_name, String last_name, String email, String emp_username, String emp_password,
+			String emp_type) {
 		super();
 		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.first_name = first_name;
+		this.last_name = last_name;
 		this.email = email;
-		this.username = username;
-		this.userpassword = userpassword;
-		this.type = type;
+		this.emp_username = emp_username;
+		this.emp_password = emp_password;
+		this.emp_type = emp_type;
 	}
 
 	public int getId() {
@@ -30,20 +30,20 @@ public class Employee {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirst_name() {
+		return first_name;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirst_name(String firstname) {
+		this.first_name = firstname;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLast_name() {
+		return last_name;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
 	public String getEmail() {
@@ -54,28 +54,28 @@ public class Employee {
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmp_username() {
+		return emp_username;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmp_username(String emp_username) {
+		this.emp_username = emp_username;
 	}
 
-	public String getUserpassword() {
-		return userpassword;
+	public String getEmp_password() {
+		return emp_password;
 	}
 
-	public void setUserpassword(String userpassword) {
-		this.userpassword = userpassword;
+	public void setEmp_password(String emp_password) {
+		this.emp_password = emp_password;
 	}
 
-	public String getType() {
-		return type;
+	public String getEmp_type() {
+		return emp_type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setEmp_type(String emp_type) {
+		this.emp_type = emp_type;
 	}
 
 	public static void employeeInformation() {
@@ -86,8 +86,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-				+ ", username=" + username + ", userpassword=" + userpassword + ", type=" + type + "]";
+		return "Employee [id=" + id + ", firstname=" + first_name + ", lastname=" + last_name + ", email=" + email
+				+ ", username=" + emp_username + ", userpassword=" + emp_password + ", type=" + emp_type + "]";
 	}
 
 }

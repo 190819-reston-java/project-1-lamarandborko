@@ -10,13 +10,15 @@ public interface ReimbursementDao {
 	
 	List<Reimbursement> viewResolved(int id);
 	
-	List<Reimbursement> viewAllPending(String name);
+	List<Reimbursement> viewPending(String name);
 	
-	List<Reimbursement> viewAllResolved(String name);
+	List<Reimbursement> viewResolved(String name);
 
 	List<Reimbursement> viewAllPending();
 	
 	List<Reimbursement> viewAllResolved();
+	
+	boolean changeStatus(Reimbursement r);
 	
 	boolean createReimbursement(Reimbursement r);
 
