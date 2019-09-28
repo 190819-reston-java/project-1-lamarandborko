@@ -20,13 +20,13 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT * FROM project_1.reimbursements WHERE id = ? AND status = Pending;";
+			String query = "SELECT * FROM project_1.reimbursements WHERE employee_id = ? AND status = 'Pending';";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setInt(1, id);
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						while (resultSet.next()) {
-							reimbursements.add(createReimbursementFromRS(resultSet));
+							reimbursements.add(createReimbursementfromRS(resultSet));
 						}
 					}
 				}
@@ -43,13 +43,13 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT * FROM project_1.reimbursements WHERE id = ? AND status = Resolved;";
+			String query = "SELECT * FROM project_1.reimbursements WHERE employee_id = ? AND status = 'Resolved';";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setLong(1, id);
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						while (resultSet.next()) {
-							reimbursements.add(createReimbursementFromRS(resultSet));
+							reimbursements.add(createReimbursementfromRS(resultSet));
 						}
 					}
 				}
@@ -66,13 +66,13 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "select * from project_1.reimbursements where personusername = ? AND status = Pending;";
+			String query = "SELECT * FROM project_1.reimbursements where emp_username = ? AND status = 'Pending';";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setString(1, name);
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						while (resultSet.next()) {
-							reimbursements.add(createReimbursementFromRS(resultSet));
+							reimbursements.add(createReimbursementfromRS(resultSet));
 						}
 					}
 				}
@@ -89,13 +89,13 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "select * from project_1.reimbursements where personusername = ? AND status=Resolved;";
+			String query = "SELECT * FROM project_1.reimbursements where emp_username = ? AND status='Resolved';";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setString(1, name);
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						while (resultSet.next()) {
-							reimbursements.add(createReimbursementFromRS(resultSet));
+							reimbursements.add(createReimbursementfromRS(resultSet));
 						}
 					}
 				}
@@ -108,16 +108,16 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 
 	@Override
 	public List<Reimbursement> viewAllPending() {
-		
+
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT * FROM project_1.reimbursements WHERE status=Pending;";
+			String query = "SELECT * FROM project_1.reimbursements WHERE status='Pending';";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						while (resultSet.next()) {
-							reimbursements.add(createReimbursementFromRS(resultSet));
+							reimbursements.add(createReimbursementfromRS(resultSet));
 						}
 					}
 				}
@@ -130,16 +130,16 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 
 	@Override
 	public List<Reimbursement> viewAllResolved() {
-		
+
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT * FROM project_1.reimbursements WHERE status=Resolved;";
+			String query = "SELECT * FROM project_1.reimbursements WHERE status='Resolved';";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						while (resultSet.next()) {
-							reimbursements.add(createReimbursementFromRS(resultSet));
+							reimbursements.add(createReimbursementfromRS(resultSet));
 						}
 					}
 				}
@@ -155,14 +155,14 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		String query = "INSERT INTO project_1.reimbursements VALUES (DEFAULT, ?, ?, ?);";
+		String query = "INSERT INTO project_1.reimbursements VALUES (DEFAULT, ?, ?, ?) WHERE employee_id = ?;";
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, r.getEmployeeid());
-			stmt.setString(2, r.getTitle());
-			stmt.setDouble(3, r.getAmount_requested());
-			stmt.setString(4, r.getPicture());
+			stmt.setString(1, r.getTitle());
+			stmt.setDouble(2, r.getAmount_requested());
+			stmt.setString(3, r.getPicture());
+			stmt.setInt(4, r.getEmployeeid());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -175,18 +175,43 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return true;
 	}
 
-	private Reimbursement createReimbursementFromRS(ResultSet resultset) throws SQLException {
+	private Reimbursement createReimbursementfromRS(ResultSet resultset) throws SQLException {
 		return new Reimbursement(resultset.getInt("id"), resultset.getInt("employee_id"), resultset.getString("title"),
 				resultset.getDouble("amount_requested"), resultset.getDate("date_requested"),
-				resultset.getString("status"), resultset.getString("picture"));
+				resultset.getString("status"), resultset.getString("resolved_status"), resultset.getString("picture"));
 	}
 
 	@Override
-	public boolean changeStatus(Reimbursement r) {
+	public boolean requestAccepted(Reimbursement r) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		final String query = "UPDATE project_1.reimbursements SET status=?, resolved_status=Resolved WHERE employee_id = ?;";
+		final String query = "UPDATE project_1.reimbursements SET status=?, resolved_status='Resolved' WHERE employee_id = ?;";
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, r.getStatus());
+			stmt.setLong(2, r.getId());
+
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+
+		return true;
+	}
+
+	@Override
+	public boolean requestDenied(Reimbursement r) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		final String query = "UPDATE project_1.reimbursements SET status=?, resolved_status='Resolved' WHERE employee_id = ?;";
 
 		try {
 			conn = ConnectionUtil.getConnection();

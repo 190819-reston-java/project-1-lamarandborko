@@ -23,11 +23,11 @@ public class EmployeeService {
 	private ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
 	static Scanner sc = new Scanner(System.in);
 	static String typeOfReimbursement;
-	static int amount;
+	static int amountrequested;
 	static ImageIcon image;
 	static JLabel label;
-	static String username;
-	static String  password;
+	static String emp_username;
+	static String  emp_password;
 	static String first_name;
 	static String last_name;
 	static String email;
@@ -47,7 +47,7 @@ public class EmployeeService {
 		System.out.println("What is Reimbursement for? ");
 		typeOfReimbursement = sc.next();
 		System.out.println("Enter amount to reimburst: ");
-		amount = sc.nextInt();
+		amountrequested = sc.nextInt();
 		System.out.println("Enter image for approval: ");
 		System.out.println("Thank you for submitting. ");						
 
@@ -58,7 +58,7 @@ public class EmployeeService {
 	}
 	
 	public void submitReimbursement2() {
-		reimbursementDao.createReimbursement(new Reimbursement(0, 0, null, 0, null, null, null));
+		reimbursementDao.createReimbursement(new Reimbursement(0, 0, null, 0, null, null, null, null));
 		System.out.println("Submited Reimbursement Request");
 	}
 
@@ -77,9 +77,9 @@ public class EmployeeService {
 		System.out.println("Add new Employee");
 		employeeDao.createEmployee(new Employee(0, null, null, null, null, null, null));
 		System.out.print("Enter Username: ");
-		username = sc.next();
+		emp_username = sc.next();
 		System.out.print("Enter Password: ");
-		password = sc.next();
+		emp_password = sc.next();
 		System.out.print("Enter First Name: ");
 		first_name = sc.next();
 		System.out.print("Enter Last Name: ");
