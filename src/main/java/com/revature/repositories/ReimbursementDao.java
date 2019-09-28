@@ -18,7 +18,9 @@ public interface ReimbursementDao {
 	
 	List<Reimbursement> viewAllResolved();
 	
-	boolean changeStatus(Reimbursement r);
+	boolean requestAccepted(Reimbursement r);
+	
+	boolean requestDenied(Reimbursement r);
 	
 	boolean createReimbursement(Reimbursement r);
 

@@ -7,7 +7,6 @@ import com.revature.services.ManagerService;
 
 public class Controller {
 
-	public static boolean isSignedIn;
 	public static boolean quit = false;
 	private static Scanner in = new Scanner(System.in);
 	private static EmployeeService employeeService = new EmployeeService();
@@ -58,7 +57,6 @@ public class Controller {
 		String password = in.next();
 		if(username==username && password==password) {
 			System.out.println("Login Successful.");
-			isSignedIn = true;
 		} else {
 			System.out.println("Login Unsuccessful. Please Try again.");
 			loginMenu();
@@ -105,7 +103,7 @@ public class Controller {
 			break;
 
 		}
-		employeeMenu();
+
 
 	}
 

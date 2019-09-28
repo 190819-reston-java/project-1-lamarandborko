@@ -16,41 +16,25 @@ public class ManagerService {
 	private EmployeeDao employeeDao = new EmployeeDaoJDBC();
 	private ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
 	private static Scanner sc = new Scanner(System.in);
-	private Reimbursement selectedReimbursement = new Reimbursement(0, 0, null, 0, null, null, null);
+	private Reimbursement selectedReimbursement = new Reimbursement(0, 0, null, 0, null, null, null, null);
 
-	// getters and setters
-	public Employee getSelectedEmployee() {
-		return selectedEmployee;
-	}
-
-	public void setSelectedEmployee(Employee selectedEmployee) {
-		this.selectedEmployee = selectedEmployee;
-	}
-
-	public Reimbursement getSelectedReimbursement() {
-		return selectedReimbursement;
-	}
-
-	public void setSelectedReimbursement(Reimbursement selectedReimbursement) {
-		this.selectedReimbursement = selectedReimbursement;
-	}
-
-	// list of pending and resolved of selected employee
-	public List<Reimbursement> getPending() {
+	// list of all pending
+	public List<Reimbursement> getAllPending() {
 		reimbursementDao.viewAllPending().forEach((Reimbursement r) -> {
 			System.out.println(r);
 		});
 		return reimbursementDao.viewAllPending();
 	}
 
-	public List<Reimbursement> getResolved() {
+	// list of all resolved
+	public List<Reimbursement> getAllResolved() {
 		reimbursementDao.viewAllPending().forEach((Reimbursement r) -> {
 			System.out.println(r);
 		});
 		return reimbursementDao.viewAllPending();
 	}
 
-	// list of pending and resolved by name
+	// list of pending by name
 	public List<Reimbursement> getPending(String name) {
 		reimbursementDao.viewPending(name).forEach((Reimbursement r) -> {
 			System.out.println(r);
@@ -58,6 +42,7 @@ public class ManagerService {
 		return reimbursementDao.viewPending(name);
 	}
 
+	// list of resolved by name
 	public List<Reimbursement> getResolved(String name) {
 		reimbursementDao.viewPending(name).forEach((Reimbursement r) -> {
 			System.out.println(r);
@@ -72,31 +57,39 @@ public class ManagerService {
 
 	// 1 accept or deny requests
 	public void reviewReimbursements() {
-		System.out.println("Reimbursements to be reviewed");
-		getPending();
-		System.out.println("Choose a reimbursement");
+		getAllPending();
+		System.out.println("Enter employee id: ");
 		int id = sc.nextInt();
 		modifyPending(id);
 		
 	}
 
 	private void modifyPending(int id) {
-		System.out.println("Select an Employee");
-		System.out.println("Select a reimbursement");
-		
-		reimbursementDao.changeStatus(selectedReimbursement);
+		System.out.println("1 to accept request, 2 to deny request");
+		String i = sc.next();
+		switch(i) {
+		case "1":
+			reimbursementDao.requestAccepted(selectedReimbursement);
+			break;
+		case"2":
+			reimbursementDao.requestDenied(selectedReimbursement);
+			break;
+		default:
+			System.out.println("input not recognized");
+			break;
+		}
 	}
 
 	// 2 get all pending
 	public void viewAllPendingReimbursements() {
 		System.out.println("Pending Reimbursements");
-		getPending();
+		getAllPending();
 	}
 
 	//3 get all resolved
 	public void viewAllResolvedReimbursements() {
 		System.out.println("All Resolved Reimbursements");
-		getResolved();
+		getAllResolved();
 	}
 
 	//4 view all employees
@@ -116,9 +109,26 @@ public class ManagerService {
 	//6 view single employee
 	public void viewEmployee() {
 		System.out.println("Enter employee name");
-		String name = sc.next();
+		String emp_username = sc.next();
 		System.out.println(" All information of employee");
-		employeeDao.viewEmployee(name);
+		employeeDao.viewEmployee(emp_username);
 	}
+	
+	// getters and setters
+		public Employee getSelectedEmployee() {
+			return selectedEmployee;
+		}
+
+		public void setSelectedEmployee(Employee selectedEmployee) {
+			this.selectedEmployee = selectedEmployee;
+		}
+
+		public Reimbursement getSelectedReimbursement() {
+			return selectedReimbursement;
+		}
+
+		public void setSelectedReimbursement(Reimbursement selectedReimbursement) {
+			this.selectedReimbursement = selectedReimbursement;
+		}
 
 }
