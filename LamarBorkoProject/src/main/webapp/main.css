@@ -1,0 +1,105 @@
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+nav {
+    position: relative;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    color: orangered;
+
+}
+header {
+    color: white;
+    background-color: orangered;
+    font-weight: bold;
+    text-align: right;
+    padding: 6%;
+}
+section  { 
+    background-color: rgb(102, 97, 97);
+}
+footer {
+    color: white;
+    background-color: orangered;
+    font-weight: bold;
+    padding: 3%;
+}
+.navbar{
+
+    background-color: rgb(102, 97, 97);
+    padding: 15px;
+}
+ .nav-link {
+    color: white;
+    
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color:orangered;
+  border-radius: 25px;
+  
+}
+
+  a:hover {
+    color: orangered;
+    text-decoration: underline;
+  }
+
+/* Keep all demo styles inside the demo container: */
+.demo p {
+    padding-top: 20px;
+    display: block;
+    text-align: center;
+    height: 120px;
+    font-size: 30px;
+    text-transform: capitalize;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.demo .row {
+    margin: 5px 0px 5px 0px;
+}
+
+/* any div inside .demo, but not if its class row */
+.demo div:not(.row) {
+    border: 3px solid orangered;
+    border-radius: 25px;
+    
+}
+
+.col-sm-3 { 
+    margin: 20px;
+    color:white;
+    background-color: orangered;
+
+}
+#tab {
+    color: white;
+    text-decoration: none;
+}
+#tab:hover {
+    color: rgb(102, 97, 97);
+    text-decoration: none;
+  }
+
+.control-label {
+    color:white;  
+
+}
+  
+.btn {
+    background-color: orangered;
+    color: white;
+}
+.form{
+    padding: 20px;
+}
+
+.col-md-6 {
+    position: relative;
+}
