@@ -55,11 +55,8 @@ public class LoginRegister extends HttpServlet {
 	    	}else {
 	    		req.getRequestDispatcher("employee.html").forward(req, resp);
 	    	}					
-		}else if(submitType.equals("register")) {
-			
-			EmployeeDao employeeDao1 = new EmployeeDaoJDBC();
-			
-				employeeDao1.createEmployee(new Employee(id, first_name, last_name, email, username, password, emp_type));
+		}else if(submitType.equals("register")) {				
+				employeeDao.createEmployee(new Employee(id, first_name, last_name, email, username, password, emp_type));
 			
 			//employee.setFirst_name(req.getParameter(first_name));	
 		}else {
