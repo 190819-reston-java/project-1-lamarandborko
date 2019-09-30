@@ -1,6 +1,5 @@
 package com.revature.services;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -75,10 +74,10 @@ public class ManagerService {
 
 	//6 view single employee
 	public Employee viewEmployee() {
-		System.out.println("Enter employee username");
-		String emp_username = sc.next();
-		System.out.println(employeeDao.viewEmployee(emp_username).toString());
-		return employeeDao.viewEmployee(emp_username);
+		System.out.println("Enter employee Id");
+		int id = sc.nextInt();
+		System.out.println(employeeDao.viewEmployee(id).toString());
+		return employeeDao.viewEmployee(id);
 	}
 	
 

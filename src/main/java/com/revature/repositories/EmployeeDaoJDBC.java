@@ -46,15 +46,15 @@ public class EmployeeDaoJDBC implements EmployeeDao {
     }
     
     @Override
-    public Employee viewEmployee(int employee_id) {
+    public Employee viewEmployee(int id) {
     	ResultSet resultSet = null;
 		PreparedStatement statement =  null;
 		Employee employee = null;
 		
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			statement = conn.prepareStatement(
-					"SELECT * FROM project_1.employees WHERE employee_id=?;");
-			statement.setInt(1, employee_id);
+					"SELECT * FROM project_1.employees WHERE id = ?;");
+			statement.setInt(1, id);
 			if(statement.execute()) {
 				resultSet =  statement.getResultSet();
 				if(resultSet.next()) {
