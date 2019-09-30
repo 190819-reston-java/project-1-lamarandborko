@@ -3,6 +3,7 @@ package com.revature.model;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Date;
 
 public class Reimbursement {
 	

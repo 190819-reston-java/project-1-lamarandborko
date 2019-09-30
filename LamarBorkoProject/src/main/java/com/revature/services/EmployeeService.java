@@ -15,18 +15,18 @@ public class EmployeeService {
 	
 	static Scanner sc = new Scanner(System.in);
 	static int id;
-	static String typeOfReimbursement;
-	static double amount;
-	static int employee_id;
+	public static String typeOfReimbursement;
+	public static double amount;
+	public static int employee_id;
 	static String username;
 	static String  password;
 	static String first_name;
 	static String last_name;
 	static String email;
 	static String type;
-	static Timestamp daterequested;
-	static String status = "Pending";
-	static String resolved_status;
+	public static Timestamp daterequested;
+	public static String status = "Pending";
+	public static String resolved_status;
 	static String emp_type = "Employee";
 	public static ArrayList<Reimbursement> reimbursement = new ArrayList<Reimbursement>();
 	public static ArrayList<Employee> employee = new ArrayList<Employee>();
