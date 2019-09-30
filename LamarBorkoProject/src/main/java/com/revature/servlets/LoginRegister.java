@@ -15,6 +15,7 @@ import com.revature.repositories.EmployeeDao;
 import com.revature.repositories.EmployeeDaoJDBC;
 import com.revature.repositories.ReimbursementDao;
 import com.revature.repositories.ReimbursementDaoJDBC;
+import com.revature.services.EmployeeService;
 
 @WebServlet("/LoginRegister")
 public class LoginRegister extends HttpServlet {
@@ -71,10 +72,13 @@ public class LoginRegister extends HttpServlet {
 			reimbursementDao.createReimbursement(new Reimbursement(id, currentEmployee.id, typeOfReimbursement, amountrequested,
 					daterequested, status, resolved_status));
 			req.getRequestDispatcher("employee.html").forward(req, resp);				
-//		}else if(submitType.equals("view_reim")) {
-//			ObjectMapper om = new ObjectMapper();
-//			PrintWriter pw = resp.getWriter();
-			
+		}else if(submitType.equals("pending_reim")) {
+			ObjectMapper om = new ObjectMapper();
+			PrintWriter pw = resp.getWriter();
+			ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
+			String jsonEmployees = om.writeValueAsString(reimbursementDao.viewEmployeePending());
+			pw.write(jsonEmployees);
+			//req.getRequestDispatcher("pending_reibursements.html").forward(req, resp);
 
 		}else {
 			req.setAttribute("message", "Data not found, Create account!!");
