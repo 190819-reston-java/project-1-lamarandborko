@@ -9,7 +9,7 @@ public interface EmployeeDao {
 	
 	Employee viewEmployee(int id);
 	
-	Employee viewEmployee(String name);
+	Employee viewEmployee(String emp_username);
 	
 	Employee getEmployee(String username, String password);
 	

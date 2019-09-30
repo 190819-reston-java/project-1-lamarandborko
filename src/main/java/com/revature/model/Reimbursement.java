@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 import java.util.Date;
 
 public class Reimbursement {
-	
+
 	private int id;
 	private int employeeid;
 	private String title;
@@ -16,7 +16,8 @@ public class Reimbursement {
 	private String picture;
 	static NumberFormat formatter = new DecimalFormat("#0.00");
 
-	public Reimbursement(int id, int employeeid, String title, double amount_requested, Date date_requested, String status, String resolved_status, String picture) {
+	public Reimbursement(int id, int employeeid, String title, double amount_requested, Date date_requested,
+			String status, String resolved_status, String picture) {
 		super();
 		this.id = id;
 		this.employeeid = employeeid;
@@ -75,7 +76,7 @@ public class Reimbursement {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public String getResolvedstatus() {
 		return resolved_status;
 	}
@@ -83,7 +84,6 @@ public class Reimbursement {
 	public void setResolvedstatus(String resolved_status) {
 		this.resolved_status = resolved_status;
 	}
-
 
 	public String getPicture() {
 		return picture;
@@ -96,8 +96,8 @@ public class Reimbursement {
 	@Override
 	public String toString() {
 		return "Reimbursement [id=" + id + ", employeeid=" + employeeid + ", title=" + title + ", amount_requested="
-				+ amount_requested + ", date_requested=" + date_requested + ", status=" + status + ", resolved_status=" + resolved_status + ", picture="
-				+ picture + "]";
+				+ amount_requested + ", date_requested=" + date_requested + ", status=" + status + ", resolved_status="
+				+ resolved_status + ", picture=" + picture + "]";
 	}
 
 }
