@@ -114,7 +114,7 @@ public class Controller {
 		System.out.println("Manager Menu");
 		System.out.println(" ");
 		System.out.println("1: approve/deny pending reimbursement requests");
-		System.out.println("2: view pending requests from all employees");
+		System.out.println("2: view all pending requests");
 		System.out.println("3: view all resolved requests");
 		System.out.println("4: view all employees");
 		System.out.println("5: view employee reimbursement requests");

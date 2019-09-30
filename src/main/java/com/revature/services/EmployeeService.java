@@ -75,7 +75,6 @@ public class EmployeeService {
 
 	public void addEmployee() {
 		System.out.println("Add new Employee");
-		employeeDao.createEmployee(new Employee(0, null, null, null, null, null, null));
 		System.out.print("Enter Username: ");
 		emp_username = sc.next();
 		System.out.print("Enter Password: ");
@@ -86,7 +85,7 @@ public class EmployeeService {
 		last_name = sc.next();
 		System.out.print("Enter Email: ");
 		email = sc.next();
-			
+		employeeDao.createEmployee(new Employee(0, first_name, last_name, email, emp_username, emp_password, selectedEmployee.getEmp_type()));
 	}
 
 	
