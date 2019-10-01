@@ -78,29 +78,55 @@ public class LoginRegister extends HttpServlet {
 			ObjectMapper om = new ObjectMapper();
 			PrintWriter pw = resp.getWriter();
 			om.writeValueAsString(currentEmployee);
-			pw.println("<html><body><section>");
+			pw.println("<html><head>"
+					+ "<meta charset=\"UTF-8\">\r\n" + 
+					"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n" + 
+					"    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n" + 
+					"    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" \r\n" + 
+					"    integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\r\n" + 
+					"    <link rel=\"stylesheet\" href=\"main.css\" type=\"text/css\">\r\n" + 
+					"    <title>Employee Menu</title>"
+					+ "</head><body>"
+					+ "<nav class=\"navbar nav-pills navbar-expand-md\">\r\n" + 
+					"        <a class=\"nav-link active\" href=\"employee.html\">Back</a>\r\n" + 
+					"    </nav>\r\n" + 
+					"    <header class=\"header\">\r\n" + 
+					"        <h1>Expense Reimbursement System </h1>\r\n" + 
+					"        <h1>(ERS)</h1>\r\n" + 
+					"    </header><section>");
 			pw.println("<h2>User First name: " + currentEmployee.first_name + "</h2>");
 			pw.println("<h2>User Last name: " + currentEmployee.last_name + "</h2>");
 			pw.println("<h2>User Email: " + currentEmployee.email + "</h2>");
 			pw.println("<h2>User username: " + currentEmployee.emp_username + "</h2>");
 			pw.println("<h2>User password: " + currentEmployee.emp_password + "</h2>");
-			pw.println("</section></body></html>");
+			pw.println("</section><footer>Borko and Lamar Project 1 &#174;</footer></body></html>");
+			//req.getRequestDispatcher("employee_info.html").forward(req, resp);
 		}else if(submitType.equals("pending_reim")) {
 			ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
 			ObjectMapper om = new ObjectMapper();
 			PrintWriter pw = resp.getWriter();
 			pw.println("<html><body><section>");
 			for(Reimbursement r : reimbursementDao.viewEmployeePending()) {
-			String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(r.daterequested);
-			if("Pending".equals(r.resolved_status) ) {			
+				
+			String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(r.daterequested);			
 		    om.writeValueAsString(r);
-		    pw.println("<h2>" +r.title + "  " + r.amountrequested + " " + r.status  + "  Date Requested: " + s +"</h2>");	    		    
-			}
-			
-			pw.println("</section></body></html>");
+		    if("Pending".equals(r.status) )
+		    pw.println("<h2>" +r.title + "  " + r.amountrequested + " " + r.status  + "  Date Requested: " + s +"</h2>");	    		    						
 		}
-		
-			
+			pw.println("</section></body></html>");
+		}else if(submitType.equals("resolved_reim")) {
+			ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
+			ObjectMapper om = new ObjectMapper();
+			PrintWriter pw = resp.getWriter();
+			pw.println("<html><footer>Borko and Lamar Project 1 &#174;</footer><body><section>");
+			for(Reimbursement r : reimbursementDao.viewEmployeePending()) {
+				
+			String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(r.daterequested);			
+		    om.writeValueAsString(r);
+		    if("Resolved".equals(r.status) )
+		    pw.println("<h2>" +r.title + "  " + r.amountrequested + " " + r.status + " " +r.resolved_status + "  Date Requested: " + s +"</h2>");	    		    						
+		}
+			pw.println("</section><footer>Borko and Lamar Project 1 &#174;</footer></body></html>");
 		}else {
 			req.setAttribute("message", "Data not found, Create account!!");
 			req.getRequestDispatcher("new_user.html").forward(req, resp);
