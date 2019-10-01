@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.revature.controller.Controller;
 import com.revature.model.Reimbursement;
+import com.revature.servlets.LoginRegister;
 import com.revature.utils.ConnectionUtil;
 import com.revature.utils.StreamCloser;
 
@@ -67,7 +68,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 			conn = ConnectionUtil.getConnection();
 			statement = conn.createStatement();
 			resultSet = statement.executeQuery(
-					"SELECT * FROM reimbursements WHERE employee_id = " + Controller.currentEmployee.id + ";");
+					"SELECT * FROM reimbursements WHERE employee_id = " + LoginRegister.currentEmployee.id + ";");
 
 			// loop through ResultSet
 			while (resultSet.next()) {

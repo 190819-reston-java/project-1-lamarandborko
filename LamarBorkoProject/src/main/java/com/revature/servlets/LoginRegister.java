@@ -3,6 +3,8 @@ package com.revature.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -72,14 +74,33 @@ public class LoginRegister extends HttpServlet {
 			reimbursementDao.createReimbursement(new Reimbursement(id, currentEmployee.id, typeOfReimbursement, amountrequested,
 					daterequested, status, resolved_status));
 			req.getRequestDispatcher("employee.html").forward(req, resp);				
-		}else if(submitType.equals("pending_reim")) {
+		}else if(submitType.equals("empl_info")) {
 			ObjectMapper om = new ObjectMapper();
 			PrintWriter pw = resp.getWriter();
+			om.writeValueAsString(currentEmployee);
+			pw.println("<html><body><section>");
+			pw.println("<h2>User First name: " + currentEmployee.first_name + "</h2>");
+			pw.println("<h2>User Last name: " + currentEmployee.last_name + "</h2>");
+			pw.println("<h2>User Email: " + currentEmployee.email + "</h2>");
+			pw.println("<h2>User username: " + currentEmployee.emp_username + "</h2>");
+			pw.println("<h2>User password: " + currentEmployee.emp_password + "</h2>");
+			pw.println("</section></body></html>");
+		}else if(submitType.equals("pending_reim")) {
 			ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
-			String jsonEmployees = om.writeValueAsString(reimbursementDao.viewEmployeePending());
-			pw.write(jsonEmployees);
-			//req.getRequestDispatcher("pending_reibursements.html").forward(req, resp);
-
+			ObjectMapper om = new ObjectMapper();
+			PrintWriter pw = resp.getWriter();
+			pw.println("<html><body><section>");
+			for(Reimbursement r : reimbursementDao.viewEmployeePending()) {
+			String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(r.daterequested);
+			if("Pending".equals(r.resolved_status) ) {			
+		    om.writeValueAsString(r);
+		    pw.println("<h2>" +r.title + "  " + r.amountrequested + " " + r.status  + "  Date Requested: " + s +"</h2>");	    		    
+			}
+			
+			pw.println("</section></body></html>");
+		}
+		
+			
 		}else {
 			req.setAttribute("message", "Data not found, Create account!!");
 			req.getRequestDispatcher("new_user.html").forward(req, resp);
