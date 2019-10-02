@@ -7,6 +7,8 @@ import com.revature.model.Employee;
 public interface EmployeeDao {
 	Employee getEmployee(String username);
 	
+	Employee getEmployee(int id);
+	
 	Employee viewEmployee(int id);
 	
 	Employee viewEmployee(String emp_username);

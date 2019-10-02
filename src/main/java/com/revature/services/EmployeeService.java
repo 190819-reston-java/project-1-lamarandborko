@@ -9,10 +9,7 @@ import com.revature.repositories.EmployeeDaoJDBC;
 import com.revature.repositories.ReimbursementDao;
 import com.revature.repositories.ReimbursementDaoJDBC;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.Scanner;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -32,6 +29,11 @@ public class EmployeeService {
 	static String last_name;
 	static String email;
 	static String type;
+	
+	public EmployeeService(EmployeeDao employeeDao) {
+		this.employeeDao = employeeDao;
+		this.selectedEmployee = new Employee(0, null, null, null, null, null, null);
+	}
 
   public Employee getSelectedEmployee() {
 		return selectedEmployee;
@@ -52,9 +54,22 @@ public class EmployeeService {
 		System.out.println("Thank you for submitting. ");						
 
 	}
+	public boolean createReimbursement(Reimbursement reimbursement) {
+		return reimbursementDao.createReimbursement(reimbursement);
+	}
 
 	public List<Employee> getEmployees() {
 		return employeeDao.viewEmployees();
+	}
+	
+	
+	
+	public Employee getEmployee(String string) {
+		try {
+			return employeeDao.getEmployee(Integer.parseInt(string));
+		} catch (NumberFormatException e) {
+			return employeeDao.getEmployee(string);
+		}
 	}
 	
 	public void submitReimbursement2() {
@@ -86,6 +101,10 @@ public class EmployeeService {
 		System.out.print("Enter Email: ");
 		email = sc.next();
 		employeeDao.createEmployee(new Employee(0, first_name, last_name, email, emp_username, emp_password, selectedEmployee.getEmp_type()));
+	}
+	
+	public boolean createEmployee(Employee employee) {
+		return employeeDao.createEmployee(employee);
 	}
 
 	

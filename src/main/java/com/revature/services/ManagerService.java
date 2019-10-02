@@ -15,6 +15,26 @@ public class ManagerService {
 	private EmployeeDao employeeDao = new EmployeeDaoJDBC();
 	private ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
 	private static Scanner sc = new Scanner(System.in);
+	private Reimbursement selectedReimbursement;
+	
+	public ManagerService(ReimbursementDao reimbursementDao) {
+		this.reimbursementDao = reimbursementDao;
+		this.selectedReimbursement = new Reimbursement(0, 0, null, 0, null, null, null, null);
+	}
+	
+	
+
+	public Reimbursement getSelectedReimbursement() {
+		return selectedReimbursement;
+	}
+
+
+
+	public void setSelectedReimbursement(Reimbursement selectedReimbursement) {
+		this.selectedReimbursement = selectedReimbursement;
+	}
+
+
 
 	// 1 accept or deny requests
 	public void reviewReimbursements() {
@@ -24,6 +44,13 @@ public class ManagerService {
 		modifyPending(id);
 		
 	}
+	public boolean acceptReimbursement(Reimbursement reimbursement) {
+		return reimbursementDao.requestAccepted(reimbursement);
+	}
+	public boolean denyReimbursement(Reimbursement reimbursement) {
+		return reimbursementDao.requestDenied(reimbursement);
+	}
+	
 
 	private void modifyPending(int id) {
 		System.out.println("1 to accept request, 2 to deny request");
@@ -40,7 +67,7 @@ public class ManagerService {
 			break;
 		}
 	}
-
+	
 	// 2 get all pending
 	public List<Reimbursement> viewAllPendingReimbursements() {
 		reimbursementDao.viewAllPending()
@@ -67,6 +94,14 @@ public class ManagerService {
 		viewAllEmployees();
 		System.out.println("Enter employee Id");
 		int employee_id = sc.nextInt();
+		reimbursementDao.viewPending(employee_id)
+		.forEach((Reimbursement r)->{System.out.println(r);});
+		 return reimbursementDao.viewPending(employee_id);
+	}
+	
+	public List<Reimbursement> viewEmployeeRequests(String employee_id) {
+		viewAllEmployees();
+		System.out.println("Enter employee Id");
 		reimbursementDao.viewPending(employee_id)
 		.forEach((Reimbursement r)->{System.out.println(r);});
 		 return reimbursementDao.viewPending(employee_id);

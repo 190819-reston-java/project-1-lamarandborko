@@ -9,8 +9,8 @@ public class Controller {
 
 	public static boolean quit = false;
 	private static Scanner in = new Scanner(System.in);
-	private static EmployeeService employeeService = new EmployeeService();
-	private static ManagerService managerService = new ManagerService();
+//	private static EmployeeService employeeService = new EmployeeService();
+//	private static ManagerService managerService = new ManagerService();
 
 	public static void loginMenu() {
 
@@ -78,13 +78,13 @@ public class Controller {
 		switch (userChoice) {
 
 		case "1":
-			employeeService.submitReimbursement();
+//			employeeService.submitReimbursement();
 			break;
 		case "2":
-			employeeService.viewPendingReimbursements(0);
+//			employeeService.viewPendingReimbursements(0);
 			break;
 		case "3":
-			employeeService.viewResolvedReimbursements(0);
+//			employeeService.viewResolvedReimbursements(0);
 			break;
 		case "4":
 			Employee.employeeInformation();
@@ -126,22 +126,22 @@ public class Controller {
 		switch (userChoice) {
 
 		case "1":
-			managerService.reviewReimbursements();
+//			managerService.reviewReimbursements();
 			break;
 		case "2":
-			managerService.viewAllPendingReimbursements();
+//			managerService.viewAllPendingReimbursements();
 			break;
 		case "3":
-			managerService.viewAllResolvedReimbursements();
+//			managerService.viewAllResolvedReimbursements();
 			break;
 		case "4":
-			managerService.viewAllEmployees();
+//			managerService.viewAllEmployees();
 			break;
 		case "5":
-			managerService.viewEmployeeRequests();
+//			managerService.viewEmployeeRequests();
 			break;
 		case "6":
-			managerService.viewEmployee();
+//			managerService.viewEmployee();
 			break;
 		case "7":
 			loginMenu();
@@ -162,7 +162,7 @@ public class Controller {
 
 	private static void createUser() {
 		System.out.println("Create New Account");
-		employeeService.addEmployee();
+//		employeeService.addEmployee();
 
 	}
 

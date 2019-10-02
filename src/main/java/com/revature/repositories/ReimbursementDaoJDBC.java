@@ -14,6 +14,7 @@ import com.revature.utils.StreamCloser;
 
 public class ReimbursementDaoJDBC implements ReimbursementDao {
 
+	//prints all pending reimbursements by id
 	@Override
 	public List<Reimbursement> viewPending(int employee_id) {
 
@@ -37,6 +38,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return reimbursements;
 	}
 
+	//prints all resolved reimbursements by id
 	@Override
 	public List<Reimbursement> viewResolved(int employee_id) {
 
@@ -60,6 +62,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return reimbursements;
 	}
 
+	//prints all pending by username
 	@Override
 	public List<Reimbursement> viewPending(String emp_username) {
 
@@ -83,6 +86,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return reimbursements;
 	}
 
+	//prints all resolved reimbursements by username
 	@Override
 	public List<Reimbursement> viewResolved(String emp_username) {
 
@@ -106,6 +110,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return reimbursements;
 	}
 
+	//prints all pending reimbursements
 	@Override
 	public List<Reimbursement> viewAllPending() {
 
@@ -128,6 +133,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return reimbursements;
 	}
 
+	//prints all resolved reimbursements
 	@Override
 	public List<Reimbursement> viewAllResolved() {
 
@@ -150,6 +156,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return reimbursements;
 	}
 
+	//creates new reimbursement requests
 	@Override
 	public boolean createReimbursement(Reimbursement r) {
 		Connection conn = null;
@@ -186,6 +193,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 				resultset.getString("picture"));
 	}
 
+	//updates reimbursement to accepted
 	@Override
 	public boolean requestAccepted(int id) {
 		Connection conn = null;
@@ -209,6 +217,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		return true;
 	}
 
+	//updates reimbursement to denied
 	@Override
 	public boolean requestDenied(int id) {
 		Connection conn = null;
@@ -220,6 +229,52 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, id);
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+
+		return true;
+	}
+
+	@Override
+	public boolean requestAccepted(Reimbursement r) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		final String query = "UPDATE project_1.reimbursements SET status='Denied', resolved_status='Resolved' WHERE id = ?;";
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, r.getEmployeeid());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+
+		return true;
+	}
+
+	@Override
+	public boolean requestDenied(Reimbursement r) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		final String query = "UPDATE project_1.reimbursements SET status='Denied', resolved_status='Resolved' WHERE id = ?;";
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, r.getEmployeeid());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -20,7 +20,11 @@ public interface ReimbursementDao {
 	
 	boolean requestAccepted(int id);
 	
+	boolean requestAccepted(Reimbursement r);
+	
 	boolean requestDenied(int id);
+	
+	boolean requestDenied(Reimbursement r);
 	
 	boolean createReimbursement(Reimbursement r);
 

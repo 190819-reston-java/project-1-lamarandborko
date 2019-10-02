@@ -190,4 +190,31 @@ public class EmployeeDaoJDBC implements EmployeeDao {
         
         return true;
     }
+
+	@Override
+	public Employee getEmployee(int id) {
+		ResultSet resultSet = null;
+		PreparedStatement statement =  null;
+		Employee employee = null;
+		
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			statement = conn.prepareStatement(
+					"SELECT * FROM project_1.employees WHERE id = ?;");
+			statement.setInt(1, id);
+			if(statement.execute()) {
+				resultSet =  statement.getResultSet();
+				if(resultSet.next()) {
+					employee = createEmployeeFromRS(resultSet);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(statement);
+		}
+		
+		return employee;
+	}
 }
