@@ -6,24 +6,26 @@ import com.revature.model.Reimbursement;
 
 public interface ReimbursementDao {	
 	
-	Reimbursement viewPending();
+	List<Reimbursement> viewEmployeePending();//
 	
-	Reimbursement viewResolved();
+	boolean createReimbursement(Reimbursement r);//
 
-	Reimbursement viewAllPending(String name);
+	Reimbursement getReimbursement(int employee_id);//
+
+	List<Reimbursement> viewPending(int employee_id);
 	
-	Reimbursement viewAllResolved(String name);
+	List<Reimbursement> viewResolved(int employee_id);
 	
-	List<Reimbursement> viewEmployeePending();
+	List<Reimbursement> viewPending(String user_name);
 	
-	List<Reimbursement> viewEmployeeResolved();
-	
+	List<Reimbursement> viewResolved(String user_name);
+
 	List<Reimbursement> viewAllPending();
 	
 	List<Reimbursement> viewAllResolved();
 	
-	boolean createReimbursement(Reimbursement r);
-
-	Reimbursement getReimbursement(int employee_id);
+	boolean requestAccepted(int id);
+	
+	boolean requestDenied(int id);
 	
 }

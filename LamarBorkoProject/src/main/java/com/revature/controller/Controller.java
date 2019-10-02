@@ -14,6 +14,7 @@ public class Controller {
 	public static String emp_type;
 	public static boolean isSignedIn;
 	public static boolean quit = false;
+	private static ManagerService managerService = new ManagerService();
 
 	public static void loginMenu() {
 
@@ -142,22 +143,22 @@ public class Controller {
 		switch (userChoice) {
 
 		case "1":
-			ManagerService.reviewReimbursements();
+			managerService.reviewReimbursements();
 			break;
 		case "2":
-			ManagerService.viewAllPendingReimbursements();
+			managerService.viewAllPendingReimbursements();
 			break;
 		case "3":
-			ManagerService.viewResolvedReimbursements();
+			managerService.viewAllResolvedReimbursements();
 			break;
 		case "4":
-			ManagerService.viewAllEmployees();
+			managerService.viewAllEmployees();
 			break;
 		case "5":
-			ManagerService.viewEmployeeRequests();
+			managerService.viewEmployeeRequests();
 			break;
 		case "6":
-			ManagerService.viewEmployee();
+			managerService.viewEmployee();
 			break;
 		case "7":
 			loginMenu();

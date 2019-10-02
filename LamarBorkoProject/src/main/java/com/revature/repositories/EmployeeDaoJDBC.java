@@ -67,12 +67,6 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		}
 		return employee;
 	}
-
-	@Override
-	public Employee viewEmployee(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public Employee getEmployee(String emp_username, String emp_password) {
@@ -202,6 +196,30 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		
 		return employee;
 	}
+    @Override
+    public List<Employee> viewAllEmployees() {
+    	Statement statement = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
 
+		List<Employee> employees = new ArrayList<Employee>();
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			statement = conn.createStatement();
+			resultSet = statement.executeQuery("SELECT * FROM employees;");
+			while (resultSet.next()) {
+				employees.add(createEmployeeFromRS(resultSet));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(statement);
+			StreamCloser.close(conn);
+		}
+
+		return employees;
+    }
 
 }

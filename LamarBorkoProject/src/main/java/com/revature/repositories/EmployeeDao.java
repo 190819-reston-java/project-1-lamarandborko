@@ -9,12 +9,12 @@ public interface EmployeeDao {
 	
 	Employee viewEmployee(int id);
 	
-	Employee viewEmployee(String name);
-	
 	Employee getEmployee(String username, String password);
 	
 	List<Employee> viewEmployees();
 	
 	boolean createEmployee(Employee e);
+
+	List<Employee> viewAllEmployees();
 	
 }
