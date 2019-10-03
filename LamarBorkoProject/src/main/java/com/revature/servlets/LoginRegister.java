@@ -26,7 +26,6 @@ public class LoginRegister extends HttpServlet {
 	static int id;
 	public static String resolved_status;
 	public static Timestamp daterequested;
-	static int resolved_by;
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,8 +41,7 @@ public class LoginRegister extends HttpServlet {
 		String amount = req.getParameter("amountrequested");		
 		String title = req.getParameter("title");
 		String submitType = req.getParameter("submit");
-//		String resolved_by = req.getParameter("resolved_by");
-//		int managerId = Integer.parseInt(resolved_by);
+		String resolved_by = req.getParameter("resolved_by");
 		
 		
 		Employee employee = employeeDao.getEmployee(emp_username, emp_password);
@@ -65,9 +63,10 @@ public class LoginRegister extends HttpServlet {
 			ReimbursementDao reimbursementDao = new ReimbursementDaoJDBC();
 			String typeOfReimbursement = title;
 			double amountrequested = Integer.parseInt(amount);
+			int managerId = Integer.parseInt(resolved_by);
 			String	status  = "Pending"	;			
 			reimbursementDao.createReimbursement(new Reimbursement(id, currentEmployee.id, typeOfReimbursement, amountrequested,
-					daterequested, status, resolved_status, resolved_by));
+					daterequested, status, resolved_status, managerId));
 			req.getRequestDispatcher("employee.html").forward(req, resp);				
 		}else if(submitType.equals("empl_info")) {
 			ObjectMapper om = new ObjectMapper();
@@ -201,10 +200,10 @@ public class LoginRegister extends HttpServlet {
 					"    </header><section><table class=\"table table-striped\"><tr><th> ID </th><th> Reimbursement </th><th > Amount </th><th> Resolved Status </th><th> Date requested</th><th>Resolved By</th></tr>");
 			for(Reimbursement r : reimbursementDao.viewAllPending()) {	
 			String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(r.daterequested);			
+			Employee first_last = employeeDao.viewEmployee(r.resolved_by);
 		    om.writeValueAsString(r);
-		    Employee first_last = employeeDao.viewEmployee(r.resolved_by);
 		    if("Resolved".equals(r.status) )
-		    pw.println("<tr><td> " +r.id+"</td><td> " +r.title + "</td><td>  " + r.amountrequested + "</td><td> " + r.resolved_status + "</td><td> " + s +"</td><td> " + first_last.getFirst_name() + "</td></tr>");	    		    						
+		    pw.println("<tr><td> " +r.id+"</td><td> " +r.title + "</td><td>  " + r.amountrequested + "</td><td> " + r.resolved_status + "</td><td> " + s +"</td><td> " + first_last.getFirst_name() + " "  + first_last.getLast_name() + "</td></tr>");	    		    						
 		}
 			pw.println("</table></section><footer>Borko and Lamar Project 1 &#174;</footer></body></html>");
 		}else if(submitType.equals("all_employees")) {	
