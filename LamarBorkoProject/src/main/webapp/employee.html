@@ -19,30 +19,43 @@
     </header>
     <section>
     
-    <div class="container demo">
+   <div class="container demo">
         <div class="row">
+            
+			<div class="col-sm-3">
+			
+              <button onclick="window.location.href='submitrebuirsement.html';" class="btn btn-secondary btn-lg ">Submit reimbursement</button>
+                
+			</div>
             <div class="col-sm-3">
-                <p><a id="tab" href="submitrebuirsement.html">Submit reimbursement</a></p>
-            </div>
-            <div class="col-sm-3">
-                <p><a id="tab" href="pending_reimbursements.html">View pending reimbursement</a></p>
-            </div>
-            <div class="col-sm-3">
-                <p><a id="tab" href="resolved_reimbursements.html">View resolved reimbursement</a></p>
-            </div>
+			<form method="post" action="LoginRegister"  >
+              <button type="submit" name="submit" value="pending_reim" class="btn btn-secondary btn-lg ">View pending reimbursement</button>
+            </form>     
+			</div>
+			<div class="col-sm-3">
+			<form method="post" action="LoginRegister"  >
+              <button type="submit" name="submit" value="resolved_reim" class="btn btn-secondary btn-lg ">View resolved reimbursement</button>
+            </form>     
+			</div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <p><a id="tab" href="employee_info.html">View user information</a></p>
-            </div>
+			<form method="post" action="LoginRegister"  >
+              <button type="submit" name="submit" value="empl_info" class="btn btn-secondary btn-lg ">View Employee informations</button>
+            </form>     
+			</div>
             <div class="col-sm-3">
-                 <p><a id="tab" href="index.html">Exit to main Menu</a></p>
-            </div>
+			<form method="post" action="LoginRegister"  >
+              <button  type="submit" name="submit" value="empl_info" class="btn btn-secondary btn-lg ">Edit user informations</button>
+            </form>     
+			</div>
             <div class="col-sm-3">
-                <p><a id="tab" href="index.html">Exit</a></p>
-            </div>
+			
+              <button onclick="window.location.href='index.html';" class="btn btn-secondary btn-lg ">exit</button>
+               
+			</div>
         </div>
-    </div>
+    </div> 
     </section>
 
 

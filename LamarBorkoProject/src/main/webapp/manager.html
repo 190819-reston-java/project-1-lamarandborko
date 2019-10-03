@@ -12,7 +12,6 @@
 <body>
     <nav class="navbar nav-pills navbar-expand-md">
         <a class="nav-link active" href="index.html">Logout</a>       
-        <a class="nav-link" href="new_user.html">Create user account</a>
     </nav>
     <header class="header">
         <h1>Expense Reimbursement System </h1>
@@ -22,38 +21,43 @@
  
    <div class="container demo">
         <div class="row">
+            
+			<div class="col-sm-3">
+			
+              <button onclick="window.location.href='approve_deny_reimbursements.html';" class="btn btn-secondary btn-lg ">Aprove/Deny reimbursement</button>
+                
+			</div>
             <div class="col-sm-3">
-                <p><a id="tab" href="approve_deny_reimbursements.html">Approve/deny requests</a></p>
-            </div>
-            <div class="col-sm-3">
-                <p><a id="tab" href="all_pending_reimbursements.html">View pending requests</a></p>
-            </div>
-            <div class="col-sm-3">
-                <p><a id="tab" href="all_resolved_reimbursements.html">View all resolved requests</a></p>
-            </div>
+			<form method="post" action="LoginRegister"  >
+              <button type="submit" name="submit" value="all_pending_reim" class="btn btn-secondary btn-lg ">View pending reimbursement</button>
+            </form>     
+			</div>
+			<div class="col-sm-3">
+			<form method="post" action="LoginRegister"  >
+              <button type="submit" name="submit" value="all_resolved_reim" class="btn btn-secondary btn-lg ">View resolved reimbursement</button>
+            </form>     
+			</div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <a id="tab" href="all_employees.html"><p>View all employees</a></p>
-            </div>
+			<form method="post" action="LoginRegister"  >
+              <button type="submit" name="submit" value="all_employees" class="btn btn-secondary btn-lg ">View all Employees</button>
+            </form>     
+			</div>
             <div class="col-sm-3">
-                 <p><a Exit id="tab" href="index.html">Exit to main Menu</a></p>
-            </div>
+			<form method="post" action="LoginRegister"  >
+              <button type="submit" name="submit" value="empl_info" class="btn btn-secondary btn-lg ">Edit user informations</button>
+            </form>     
+			</div>
             <div class="col-sm-3">
-                <p><a id="tab" href="index.html">Exit</a></p>
-            </div>
+			
+              <button onclick="window.location.href='new_user.html';" class="btn btn-secondary btn-lg ">Create new user</button>
+               
+			</div>
         </div>
-    </div>   
+    </div>    
         
-
-
-
     </section>
-
-
-
-
-
 
 
     <footer>Borko and Lamar Project 1 &#174;</footer>

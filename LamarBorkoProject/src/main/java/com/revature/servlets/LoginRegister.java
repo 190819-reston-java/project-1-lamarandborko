@@ -104,7 +104,7 @@ public class LoginRegister extends HttpServlet {
 					"    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" \r\n" + 
 					"    integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\r\n" + 
 					"    <link rel=\"stylesheet\" href=\"main.css\" type=\"text/css\">\r\n" + 
-					"    <title>Employee Menu</title>"
+					"    <title>Employee info</title>"
 					+ "</head><body>"
 					+ "<nav class=\"navbar nav-pills navbar-expand-md\">\r\n" + 
 					"        <a class=\"nav-link active\" href=\"employee.html\">Back</a>\r\n" + 
@@ -132,7 +132,7 @@ public class LoginRegister extends HttpServlet {
 					"    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" \r\n" + 
 					"    integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\r\n" + 
 					"    <link rel=\"stylesheet\" href=\"main.css\" type=\"text/css\">\r\n" + 
-					"    <title>Employee Menu</title>"
+					"    <title>Resolved Reimbursement</title>"
 					+ "</head><body>"
 					+ "<nav class=\"navbar nav-pills navbar-expand-md\">\r\n" + 
 					"        <a class=\"nav-link active\" href=\"employee.html\">Back</a>\r\n" + 
@@ -160,7 +160,7 @@ public class LoginRegister extends HttpServlet {
 					"    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" \r\n" + 
 					"    integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\r\n" + 
 					"    <link rel=\"stylesheet\" href=\"main.css\" type=\"text/css\">\r\n" + 
-					"    <title>Employee Menu</title>"
+					"    <title>All Pending</title>"
 					+ "</head><body>"
 					+ "<nav class=\"navbar nav-pills navbar-expand-md\">\r\n" + 
 					"        <a class=\"nav-link active\" href=\"manager.html\">Back</a>\r\n" + 
@@ -187,7 +187,7 @@ public class LoginRegister extends HttpServlet {
 					"    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" \r\n" + 
 					"    integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\r\n" + 
 					"    <link rel=\"stylesheet\" href=\"main.css\" type=\"text/css\">\r\n" + 
-					"    <title>Employee Menu</title>"
+					"    <title>All Resolved</title>"
 					+ "</head><body>"
 					+ "<nav class=\"navbar nav-pills navbar-expand-md\">\r\n" + 
 					"        <a class=\"nav-link active\" href=\"manager.html\">Back</a>\r\n" + 
@@ -213,7 +213,7 @@ public class LoginRegister extends HttpServlet {
 					"    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" \r\n" + 
 					"    integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\r\n" + 
 					"    <link rel=\"stylesheet\" href=\"main.css\" type=\"text/css\">\r\n" + 
-					"    <title>Employee Menu</title>"
+					"    <title>All Employees</title>"
 					+ "</head><body>"
 					+ "<nav class=\"navbar nav-pills navbar-expand-md\">\r\n" + 
 					"        <a class=\"nav-link active\" href=\"manager.html\">Back</a>\r\n" + 

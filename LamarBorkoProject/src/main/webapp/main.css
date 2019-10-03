@@ -1,3 +1,10 @@
+
+button{
+	margin:20px;
+	height: 125px;
+	width:200px;
+	padding:23;
+}
 * {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -74,7 +81,7 @@ footer {
 
 /* any div inside .demo, but not if its class row */
 .demo div:not(.row) {
-    border: 3px solid orangered;
+  
     border-radius: 25px;
     
 }
@@ -82,8 +89,9 @@ footer {
 .col-sm-3 { 
     margin: 20px;
     color:white;
-    background-color: orangered;
 
+}#b {
+	height:55px;
 }
 #tab {
     color: white;
@@ -94,12 +102,21 @@ footer {
     text-decoration: none;
   }
 
+
 .control-label {
     color: rgb(102, 97, 97);  
 
 }
   
 .btn {
+	padding: 0px; 
+    overflow: hidden;
+	display: block;
+	text-transform: capitalize;
+    position: relative;
+	margin:10px;
+	height:125px;
+	width: 300px;
     background-color: orangered;
     color: white;
 }
