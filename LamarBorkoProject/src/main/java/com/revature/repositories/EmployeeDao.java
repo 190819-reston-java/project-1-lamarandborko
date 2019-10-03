@@ -14,6 +14,8 @@ public interface EmployeeDao {
 	List<Employee> viewEmployees();
 	
 	boolean createEmployee(Employee e);
+	
+	boolean updateEmployee(Employee e);
 
 	List<Employee> viewAllEmployees();
 	

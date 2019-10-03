@@ -13,11 +13,12 @@ public class Reimbursement {
 	public double amountrequested;
 	public Timestamp daterequested;
 	public String status;
-	public String picture;
 	public String resolved_status;
+	public int resolved_by;
+	public String picture;
 	static NumberFormat formatter = new DecimalFormat("#0.00");
 
-	public Reimbursement(int id, int employeeid, String title, double amount_requested, Timestamp daterequested, String status, String resolved_status) {
+	public Reimbursement(int id, int employeeid, String title, double amount_requested, Timestamp daterequested, String status, String resolved_status, int resolved_by) {
 		super();
 		this.id = id;
 		this.employee_id = employeeid;
@@ -26,6 +27,7 @@ public class Reimbursement {
 		this.daterequested = daterequested;
 		this.status = status;
 		this.resolved_status = resolved_status;
+		this.resolved_by = resolved_by;
 
 	}
 
@@ -87,6 +89,18 @@ public class Reimbursement {
 
 	public Timestamp getDaterequested() {
 		return daterequested;
+	}
+
+	public int getResolved_by() {
+		return resolved_by;
+	}
+
+	public void setResolved_by(int resolved_by) {
+		this.resolved_by = resolved_by;
+	}
+
+	public void setDaterequested(Timestamp daterequested) {
+		this.daterequested = daterequested;
 	}
 
 	@Override

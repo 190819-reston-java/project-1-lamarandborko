@@ -22,7 +22,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		Employee employee = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			statement = conn.prepareStatement(
-					"SELECT * FROM employees WHERE emp_username = ?;");
+					"SELECT * FROM project_1.employees WHERE emp_username = ?;");
 		
 			//fill in the ? with name argument
 			statement.setString(1, emp_username);
@@ -51,7 +51,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 	public Employee viewEmployee(int id) {
 		Employee employee = null;
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String query = "SELECT * FROM employees WHERE id = ?;";
+			String query = "SELECT * FROM project_1.employees WHERE id = ?;";
 			try(PreparedStatement stmt = conn.prepareStatement(query)){
 				stmt.setInt(1, id);
 				if(stmt.execute()) {
@@ -75,7 +75,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		Employee employee = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			statement = conn.prepareStatement(
-					"SELECT * FROM employees WHERE emp_username = ?AND emp_password = ?;");
+					"SELECT * FROM project_1.employees WHERE emp_username = ?AND emp_password = ?;");
 		
 			//fill in the ? with name argument
 			statement.setString(1, emp_username);
@@ -128,7 +128,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 			// Statements can execute sql queries:
 			// ResultSet stores the results of a query
 			
-			resultSet = statement.executeQuery("SELECT * FROM employees WHERE id = "+ Controller.currentEmployee.id +";");
+			resultSet = statement.executeQuery("SELECT * FROM project_1.employees WHERE id = "+ Controller.currentEmployee.id +";");
 
 			// loop through ResultSet
 			while (resultSet.next()) {
@@ -152,7 +152,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String query = "INSERT INTO employees VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";
+		String query = "INSERT INTO project_1.employees VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";
 		
 		try {
 			conn = ConnectionUtil.getConnection();
@@ -175,11 +175,37 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		return true;
 	}
 	
+	@Override
+	public boolean updateEmployee(Employee e) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		String query = "UPDATE project_1.employees SET WHERE;";
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, e.getFirst_name());
+			stmt.setString(2,  e.getLast_name());
+			stmt.setString(3, e.getEmail());
+			stmt.setString(4, e.getEmp_username());
+			stmt.setString(5, e.getEmp_password());
+		} catch (SQLException sql) {
+			sql.printStackTrace();
+			return false;
+		}
+			finally {
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+		}
+		return true;
+	}
+	
 	public Employee getEmployee(int id) {
 		Employee employee = null;
 		
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT * FROM employees WHERE id = ?;";
+			String query = "SELECT * FROM project_1.employees WHERE id = ?;";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setLong(1, id);
 				if (stmt.execute()) {
@@ -207,7 +233,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		try {
 			conn = ConnectionUtil.getConnection();
 			statement = conn.createStatement();
-			resultSet = statement.executeQuery("SELECT * FROM employees;");
+			resultSet = statement.executeQuery("SELECT * FROM project_1.employees;");
 			while (resultSet.next()) {
 				employees.add(createEmployeeFromRS(resultSet));
 			}

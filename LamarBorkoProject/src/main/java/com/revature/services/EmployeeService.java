@@ -20,13 +20,14 @@ public class EmployeeService {
 	public static int employee_id;
 	static String username;
 	static String  password;
-	static String first_name;
-	static String last_name;
+	public static String first_name;
+	public static String last_name;
 	static String email;
 	static String type;
 	public static Timestamp daterequested;
 	public static String status = "Pending";
 	public static String resolved_status;
+	public static int resolved_by;
 	static String emp_type = "Employee";
 	public static ArrayList<Reimbursement> reimbursement = new ArrayList<Reimbursement>();
 	public static ArrayList<Employee> employee = new ArrayList<Employee>();
@@ -47,9 +48,9 @@ public class EmployeeService {
 		typeOfReimbursement = "Reimbursement is for: " + typeOfReimbursement;
 		System.out.println(employee_id);
 		System.out.println(typeOfReimbursement);				
-		reimbursementDao.createReimbursement(new Reimbursement(id, employee_id, typeOfReimbursement, amount,daterequested, status, resolved_status));
-		reimbursement.add(new Reimbursement(id, employee_id, typeOfReimbursement, amount,daterequested, status, resolved_status));				
-		System.out.println("Thank you for subminting. ");						
+		reimbursementDao.createReimbursement(new Reimbursement(id, employee_id, typeOfReimbursement, amount,daterequested, status, resolved_status, resolved_by));
+		reimbursement.add(new Reimbursement(id, employee_id, typeOfReimbursement, amount,daterequested, status, resolved_status, resolved_by));				
+		System.out.println("Thank you for submitting. ");						
 		
 	}
 
