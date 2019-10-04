@@ -181,7 +181,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String query = "UPDATE project_1.employees SET (first_name=?, last_name=?, email=?, emp_username=?, emp_password=?, emp_type='Employee' WHERE id =" + LoginRegister.currentEmployee.id +";)";
+		String query = "UPDATE project_1.employees SET (first_name=?, last_name=?, email=?, emp_username=?, emp_password=?, emp_type=? WHERE id =" + LoginRegister.currentEmployee.id +");";
 		
 		try {
 			conn = ConnectionUtil.getConnection();

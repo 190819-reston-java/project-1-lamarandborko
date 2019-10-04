@@ -277,8 +277,19 @@ public class LoginRegister extends HttpServlet {
 				req.getRequestDispatcher("approve_deny_reimbursements.html").forward(req, resp);
 			}
 		}else if(submitType.equals("update_user")) {
-			//Employee update = id, first_name, last_name, email, username, password, emp_type;
-			employeeDao.updateEmployee(new Employee(id, first_name, last_name, email, emp_username, emp_password, emp_type));
+//			Employee update = id, first_name, last_name, email, username, password, emp_type;
+			for (Employee e : employeeDao.viewEmployees()) {
+				if (e.id==currentEmployee.getId()) {
+					e.setFirst_name(first_name);
+					e.setLast_name(last_name);
+					e.setEmail(email);
+					e.setEmp_username(emp_username);
+					e.setEmp_password(emp_password);
+					e.setEmp_type(emp_type);
+					employeeDao.updateEmployee(e);
+				}
+			}
+//			employeeDao.updateEmployee(new Employee(id, first_name, last_name, email, emp_username, emp_password, emp_type));
 			req.getRequestDispatcher("update-user.html").forward(req, resp);
 			
 		}else {
