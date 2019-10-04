@@ -180,7 +180,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String query = "UPDATE project_1.employees SET WHERE;";
+		String query = "UPDATE project_1.employees SET first_name=?, last_name=?, email=?, emp_username=?, emp_password=? WHERE id=?;";
 		
 		try {
 			conn = ConnectionUtil.getConnection();
@@ -190,6 +190,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 			stmt.setString(3, e.getEmail());
 			stmt.setString(4, e.getEmp_username());
 			stmt.setString(5, e.getEmp_password());
+			stmt.setInt(6, e.getId());
 		} catch (SQLException sql) {
 			sql.printStackTrace();
 			return false;

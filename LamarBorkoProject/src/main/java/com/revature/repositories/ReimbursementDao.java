@@ -24,28 +24,6 @@ public interface ReimbursementDao {
 	
 	List<Reimbursement> viewAllResolved();
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	boolean requestAccepted(int id);
 	
 	boolean requestDenied(int id);

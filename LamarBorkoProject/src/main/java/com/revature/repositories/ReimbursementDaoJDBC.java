@@ -266,7 +266,7 @@ public class ReimbursementDaoJDBC implements ReimbursementDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		final String query = "UPDATE project_1.reimbursements SET status='Resolved', resolved_status='Denied' resolved_by=" + LoginRegister.currentEmployee.id + " WHERE id = ?;";
+		final String query = "UPDATE project_1.reimbursements SET status='Resolved', resolved_status='Denied', resolved_by=" + LoginRegister.currentEmployee.id + " WHERE id = ?;";
 
 		try {
 			conn = ConnectionUtil.getConnection();
