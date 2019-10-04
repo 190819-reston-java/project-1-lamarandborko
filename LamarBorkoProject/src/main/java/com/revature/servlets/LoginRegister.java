@@ -40,8 +40,8 @@ public class LoginRegister extends HttpServlet {
 		String emp_type = "Employee";
 		String amount = req.getParameter("amountrequested");		
 		String title = req.getParameter("title");
-		String submitType = req.getParameter("submit");
 		String resolved_by = req.getParameter("resolved_by");
+		String submitType = req.getParameter("submit");
 		
 		
 		Employee employee = employeeDao.getEmployee(emp_username, emp_password);
@@ -243,7 +243,7 @@ public class LoginRegister extends HttpServlet {
 				reimbursementDao.requestDenied(idInt);
 				req.getRequestDispatcher("approve_deny_reimbursements.html").forward(req, resp);
 			}
-		}else {
+		} else{
 			req.setAttribute("message", "Data not found, Create account!!");
 			req.getRequestDispatcher("new_user.html").forward(req, resp);
 		}

@@ -28,7 +28,7 @@ public class Reimbursement {
 		this.status = status;
 		this.resolved_status = resolved_status;
 		this.resolved_by = resolved_by;
-
+//		this.picture = picture;
 	}
 
 	public int getId() {

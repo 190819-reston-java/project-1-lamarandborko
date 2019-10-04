@@ -12,7 +12,6 @@ public interface ReimbursementDao {
 
 	Reimbursement getReimbursement(int employee_id);//
 
-	//implement: view single employee pending reimbursements by id
 	List<Reimbursement> viewPending(int employee_id);
 	
 	List<Reimbursement> viewResolved(int employee_id);
