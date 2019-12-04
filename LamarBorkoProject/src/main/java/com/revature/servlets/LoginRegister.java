@@ -42,6 +42,7 @@ public class LoginRegister extends HttpServlet {
 		String title = req.getParameter("title");
 		String resolved_by = req.getParameter("resolved_by");
 		String singleEmpAllReim = req.getParameter("singleEmpAllReim");
+		String all_empl_reimb = req.getParameter("all_empl_reimb");
 		String submitType = req.getParameter("submit");
 		
 		
@@ -259,8 +260,10 @@ public class LoginRegister extends HttpServlet {
 			String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(r.daterequested);			
 		    om.writeValueAsString(r);
 			int employeeid = Integer.parseInt(singleEmpAllReim);
-		    Employee emp = employeeDao.viewEmployee(employeeid);	   	    
-		    pw.println("<tr><td> " +r.id+"</td><td> " + emp.getFirst_name() + " " +emp.getLast_name() + "</td><td> " +r.title + "</td><td>  " + r.amountrequested + "</td><td> " + r.status + "</td><td> " + s +"</td></tr>");	    		    						
+		    Employee emp = employeeDao.viewEmployee(employeeid);
+		    ReimbursementDao reim = new ReimbursementDaoJDBC();
+		    reim.getReimbursement(employeeid);
+		    pw.println("<tr><td> " + emp.id +"</td><td> " + emp.getFirst_name() + " " +emp.getLast_name() + "</td><td> " +reim.getReimbursement(employeeid).title + "</td><td>  " + reim.getReimbursement(employeeid).amountrequested + "</td><td> " + reim.getReimbursement(employeeid).resolved_status + "</td><td> " + s +"</td></tr>");	    		    						
 		}
 			pw.println("</table></section><footer>Borko and Lamar Project 1 &#174;</footer></body></html>");	
 		}else if(submitType.equals("aprove_deny")) {
